@@ -1,4 +1,7 @@
 <script setup lang="ts">
+useHead({
+  title: 'MIUMA',
+})
 </script>
 
 <template>
