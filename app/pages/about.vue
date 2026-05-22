@@ -6,7 +6,7 @@ useHead({
 </script>
 
 <template>
-  <main>
+  <main class="min-h-screen">
     <section class="max-w-4xl mx-auto px-6 py-12">
       <h1 class="text-center text-3xl font-bold text-slate-900 dark:text-slate-100 mb-12">
         {{ $t('home.about') }}

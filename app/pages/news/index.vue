@@ -16,7 +16,7 @@ useHead({ title: '文章 — MIUMA' })
 </script>
 
 <template>
-  <main class="translate-y-5 relative z-10">
+  <main class="min-h-screen translate-y-5 relative z-10">
     <section class="px-6 pb-24">
       <div class="max-w-4xl mx-auto">
         <h1 class="flex justify-center text-3xl font-bold text-slate-900 dark:text-slate-100 mb-8">
