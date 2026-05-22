@@ -1,45 +1,34 @@
 const THEME_KEY = 'blog-theme'
 
-const isClient = typeof window !== 'undefined'
-
-function getStoredTheme(): 'light' | 'dark' | null {
-  if (!isClient) return null
-  return localStorage.getItem(THEME_KEY) as 'light' | 'dark' | null
-}
-
-function getSystemTheme(): 'light' | 'dark' {
-  if (!isClient) return 'light'
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-}
-
-function applyTheme(t: 'light' | 'dark') {
-  if (isClient) {
-    document.documentElement.classList.toggle('dark', t === 'dark')
-  }
-}
-
-const theme = ref<'light' | 'dark'>(getStoredTheme() ?? getSystemTheme())
-
-applyTheme(theme.value)
-
-if (isClient) {
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem(THEME_KEY)) {
-      theme.value = e.matches ? 'dark' : 'light'
-    }
-  })
-}
-
 export function useTheme() {
+  const theme = useState<'light' | 'dark'>('blog-theme', () => 'light')
+
+  const apply = () => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.toggle('dark', theme.value === 'dark')
+    }
+  }
+
   const toggleTheme = () => {
     theme.value = theme.value === 'dark' ? 'light' : 'dark'
   }
 
-  watchEffect(() => {
-    if (isClient) {
-      localStorage.setItem(THEME_KEY, theme.value)
+  // Sync to DOM + localStorage whenever theme changes
+  watch(theme, (val) => {
+    apply()
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(THEME_KEY, val)
     }
-    applyTheme(theme.value)
+  }, { immediate: false })
+
+  onMounted(() => {
+    const stored = localStorage.getItem(THEME_KEY)
+    if (stored === 'dark' || stored === 'light') {
+      theme.value = stored
+    } else {
+      theme.value = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    apply()
   })
 
   return { theme, toggleTheme }

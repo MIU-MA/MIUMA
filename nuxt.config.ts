@@ -58,4 +58,15 @@ export default defineNuxtConfig({
   image: {
     format: ['avif', 'webp'],
   },
+
+  app: {
+    head: {
+      script: [
+        {
+          innerHTML: `(function(){try{var t=localStorage.getItem('blog-theme');if(!t)t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
+          tagPriority: 'critical',
+        },
+      ],
+    },
+  },
 })
