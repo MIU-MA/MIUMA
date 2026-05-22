@@ -1,0 +1,42 @@
+{
+  "site": {
+    "title": "MIUMA"
+  },
+  "home": {
+    "greeting": "Hi, I'm MIUMA",
+    "bio": "Welcome to my personal site. I write about tech and ideas.",
+    "articles": "Articles",
+    "noArticles": "No articles yet.",
+    "description": "I love sleeping",
+    "friendLinks": "Friends",
+    "about": "About",
+    "aboutDescription": "All layout inspiration comes from TangTangChu",
+    "aboutDescription2": "More to come, slowly but surely",
+    "music": "Music"
+  },
+  "news": {
+    "loading": "Loading...",
+    "loadError": "Failed to load the article. Please try again later.",
+    "reload": "Reload",
+    "backHome": "Back to Home",
+    "articleMissing": "Article Not Found",
+    "backHome2": "Back to Home",
+    "prevArticle": "Previous",
+    "nextArticle": "Next",
+    "noPrevArticle": "No older articles",
+    "noNextArticle": "No newer articles"
+  },
+  "theme": {
+    "switchLight": "Switch to light mode",
+    "switchDark": "Switch to dark mode"
+  },
+  "lang": {
+    "switch": "切换到中文"
+  },
+  "nav": {
+    "home": "Home",
+    "articles": "Articles",
+    "about": "About",
+    "friendlink": "Friends"
+  }
+}

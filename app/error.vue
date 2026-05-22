@@ -1,0 +1,26 @@
+<script setup lang="ts">
+import type { NuxtError } from '#app'
+
+const props = defineProps<{ error: NuxtError }>()
+
+const statusCode = computed(() => props.error?.statusCode ?? 500)
+const message = computed(() => {
+  if (props.error?.statusCode === 404) return 'Page Not Found'
+  return props.error?.statusMessage ?? 'Something went wrong'
+})
+</script>
+
+<template>
+  <main class="min-h-screen bg-white/60 dark:bg-slate-900/60 transition-colors flex items-center justify-center px-6">
+    <div class="text-center">
+      <h1 class="text-6xl font-bold text-slate-300 dark:text-slate-600 mb-4">{{ statusCode }}</h1>
+      <p class="text-lg text-slate-500 dark:text-slate-400 mb-8">{{ message }}</p>
+      <NuxtLink
+        to="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        Back to Home
+      </NuxtLink>
+    </div>
+  </main>
+</template>
