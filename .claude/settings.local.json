@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(node -e \"const p = require\\('lucide-vue-next/package.json'\\); console.log\\('version:', p.version\\)\")",
-      "Bash(node -e \"const m = require\\('lucide-vue-next'\\); console.log\\('Sun:', !!m.Sun\\); console.log\\('Moon:', !!m.Moon\\);\")"
-    ]
-  }
-}
