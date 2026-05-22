@@ -1,9 +1,0 @@
-{
-  "pid": 92304,
-  "startedAt": 1779432730897,
-  "command": "dev",
-  "cwd": "c:/Users/j1829/Desktop/blog-nuxt4",
-  "port": 3001,
-  "hostname": "::1",
-  "url": "http://[::1]:3001"
-}
