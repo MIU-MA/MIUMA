@@ -26,8 +26,8 @@ const { data: allData } = await useAsyncData('all-articles-nav', () =>
 const allArticles = computed(() => {
   if (!allData.value) return []
   return [...allData.value]
-    .filter((a: any) => a.meta?.date)
-    .sort((a: any, b: any) => (b.meta?.date || '').localeCompare(a.meta?.date || ''))
+    .filter((a: any) => a.date)
+    .sort((a: any, b: any) => (b.date || '').localeCompare(a.date || ''))
 })
 
 const prevArticle = computed(() => {
@@ -52,8 +52,8 @@ useHead({
     <div v-if="article" class="article-wrapper max-w-4xl mx-auto bg-white dark:bg-slate-800 p-8 shadow-sm rounded-2xl transition-colors">
       <header class="mb-8 border-b border-slate-100 dark:border-slate-700 pb-8">
         <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4">{{ article.title || (article.meta as any)?.title }}</h1>
-        <div v-if="(article.meta as any)?.date" class="flex items-center text-slate-500 dark:text-slate-400 text-sm">
-          <CalendarDays class="w-4 h-4 mr-1" /> {{ (article.meta as any).date }}
+        <div v-if="article.date" class="flex items-center text-slate-500 dark:text-slate-400 text-sm">
+          <CalendarDays class="w-4 h-4 mr-1" /> {{ article.date }}
         </div>
       </header>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CalendarDays } from 'lucide-vue-next'
+import { CalendarDays, Tag } from 'lucide-vue-next'
 
 const { data } = await useAsyncData('articles', () =>
   queryCollection('content')
@@ -22,20 +22,20 @@ useHead({ title: '文章 - MIUMA' })
         </h1>
 
         <template v-if="articles.length">
-          <div class="grid gap-6">
+          <div class="grid gap-6 ">
             <NuxtLink
               v-for="article in articles"
               :key="article.path"
               :to="`/news${article.path}`"
-              class="block rounded-lg p-6 transition-colors hover:bg-slate-900/5 dark:hover:bg-slate-100/5"
+              class="block rounded-lg p-6 transition-colors dark:bg-slate-800 rounded-lg p-4 hover:bg-slate-500/5 dark:hover:bg-slate-100/5"
             >
               <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
                 {{ article.title }}
               </h3>
-              <p class="text-slate-500 dark:text-slate-400 text-sm mb-3">
-                {{ article.intro }}
+              <p class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-3">
+                <Tag class="w-4 h-4 mr-1" />{{ article.intro }}
               </p>
-              <span class="inline-flex items-center text-xs text-slate-400 dark:text-slate-500">
+              <span class="flex items-center text-xs text-slate-400 dark:text-slate-500">
                 <CalendarDays class="w-4 h-4 mr-1" />{{ article.date }}
               </span>
             </NuxtLink>
