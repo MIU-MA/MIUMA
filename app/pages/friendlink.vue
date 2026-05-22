@@ -4,7 +4,7 @@ const friendLinks = computed(() => [
     name: '江西财经大学数智技术协会',
     url: 'https://www.jxufe-tech.top',
     bio: '快来加入我们吧！',
-    icon: 'https://www.jxufe-tech.top/logo.jpg',
+    icon: 'images/logo.jpg',
   },
   {
     name: '糖糖毬',
