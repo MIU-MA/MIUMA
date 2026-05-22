@@ -27,20 +27,20 @@ useHead({
 
 <template>
   <section class="flex min-h-screen  ">
-    <div class="max-w-4xl mx-auto px-6 py-12">
-      <h2 class="text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-6 sm:mb-8">
         {{ $t('home.friendLinks') }}
       </h2>
-      <div class="grid grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <a
           v-for="link in friendLinks"
           :key="link.url"
           :href="link.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="block bg-white dark:bg-slate-800 p-10 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 dark:border-slate-700"
+          class="block bg-white dark:bg-slate-800 p-6 sm:p-10 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 dark:border-slate-700"
         >
-          <div class="flex items-center gap-4 mb-4">
+          <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
             <div class="relative w-10 h-10 shrink-0">
               <svg
                 v-if="!loaded[link.icon]"
@@ -60,11 +60,11 @@ useHead({
                 @load="onLoad(link.icon)"
               />
             </div>
-            <h3 class="text-xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 class="shrink-0 text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
               {{ link.name }}
             </h3>
           </div>
-          <p class="text-slate-500 dark:text-slate-400 text-base">
+          <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base">
             {{ link.bio }}
           </p>
         </a>

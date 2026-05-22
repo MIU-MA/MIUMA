@@ -1,7 +1,7 @@
 ---
 title: Hello World
 date: 2026-05-13
-intro: 用于测试
+intro: 测试
 ---
 
 # 欢迎
