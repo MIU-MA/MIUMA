@@ -38,10 +38,10 @@ useHead({
               <Tag class="w-4 h-4" />
               睡觉
             </span>
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-pink-100 dark:bg-slate-800 hover:bg-slate-500 hover:text-white transition-colors px-4 py-2 cursor-pointer">
+            <NuxtLink to="/Music" class="inline-flex items-center gap-1.5 rounded-full bg-pink-100 dark:bg-slate-800 hover:bg-slate-500 hover:text-white transition-colors px-4 py-2 cursor-pointer">
               <Tag class="w-4 h-4" />
               还是睡觉
-            </span>
+            </NuxtLink>
           </div>
         </div>
       </div>
