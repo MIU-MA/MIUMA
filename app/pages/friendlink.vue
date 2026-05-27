@@ -18,6 +18,12 @@ const friendLinks = computed(() => [
     bio: '是TangTangChu大人喵',
     icon: 'https://img.tantanchugasuki.cn/i/r/avatar',
   },
+  {
+    name: 'Heaven',
+    url: 'https://www.dearheaven.cn',
+    bio: '热爱可抵岁月漫长',
+    icon: 'https://pic-bed.dearheaven.cn/img/avator.webp',
+  }
 ])
 
 useHead({
