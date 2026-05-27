@@ -42,6 +42,14 @@ const onEnded = () => {
   progress.value = 0
   currentTime.value = '0:00'
 }
+
+const musicList = ref([
+  {
+    title: '那天下雨了',
+    artist: '薛之谦',
+    src: '/music/那天下雨了.mp3',
+  },
+])
 </script>
 
 <template>
@@ -88,7 +96,7 @@ const onEnded = () => {
 
         <audio
           ref="audioRef"
-          src="/your-music-file.mp3"
+          src="/music/那天下雨了.mp3"
           preload="metadata"
           @timeupdate="onTimeUpdate"
           @loadedmetadata="onLoadedMetadata"
