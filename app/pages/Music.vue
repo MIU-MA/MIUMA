@@ -65,8 +65,8 @@ const musicList = ref([
             <Music class="text-white w-8 h-8" />
           </div>
           <div class="overflow-hidden">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 truncate">YOUR SONG TITLE</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400 truncate">Artist Name</p>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 truncate">你怎么找到这的</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 truncate">还没有写完喵</p>
           </div>
         </div>
 
