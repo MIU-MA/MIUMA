@@ -61,18 +61,18 @@ $$j = nxt[j - 1]$$
 const int N = 1e6 + 5;
 int nxt[N];
 
-void get_next(const string& s2) {
+void kmp(string s) {
     int j = 0;
     nxt[0] = 0;
-
-    for (int i = 1; i < (int)s2.size(); i++) {
-        while (j > 0 && s2[i] != s2[j]) {
+    for (int i = 1; i < s.size(); i++) {
+        while (j > 0 && s[i] != s[j]) {
             j = nxt[j - 1];
         }
-        if (s2[i] == s2[j]) {
+        if (s[i] == s[j]) {
             j++;
         }
         nxt[i] = j;
+        maxx = max(maxx, nxt[i]);
     }
 }
 ```
@@ -107,18 +107,18 @@ using namespace std;
 const int N = 1e6 + 5;
 int nxt[N];
 
-void get_next(const string& s2) {
+void kmp(string s) {
     int j = 0;
     nxt[0] = 0;
-
-    for (int i = 1; i < (int)s2.size(); i++) {
-        while (j > 0 && s2[i] != s2[j]) {
+    for (int i = 1; i < s.size(); i++) {
+        while (j > 0 && s[i] != s[j]) {
             j = nxt[j - 1];
         }
-        if (s2[i] == s2[j]) {
+        if (s[i] == s[j]) {
             j++;
         }
         nxt[i] = j;
+        maxx = max(maxx, nxt[i]);
     }
 }
 
@@ -126,23 +126,23 @@ signed main() {
     string s1, s2;
     cin >> s1 >> s2;
 
-    get_next(s2);
+    kmp(s2);
 
     int j = 0;
-    for (int i = 0; i < (int)s1.size(); i++) {
+    for (int i = 0; i < s1.size(); i++) {
         while (j > 0 && s1[i] != s2[j]) {
             j = nxt[j - 1];
         }
         if (s1[i] == s2[j]) {
             j++;
         }
-        if (j == (int)s2.size()) {
-            cout << i - (int)s2.size() + 2 << '\n'; // 输出 1 开始的匹配位置
+        if (j == s2.size()) {
+            cout << i - s2.size() + 2 << '\n'; // 输出 1 开始的匹配位置
             j = nxt[j - 1];                         // 继续寻找下一次匹配
         }
     }
 
-    for (int i = 0; i < (int)s2.size(); i++) {
+    for (int i = 0; i < s2.size(); i++) {
         cout << nxt[i] << " ";
     }
     cout << '\n';
