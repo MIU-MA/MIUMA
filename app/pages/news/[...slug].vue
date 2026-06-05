@@ -13,11 +13,11 @@ const targetPath = computed(() => {
 
 const { data: articleList } = await useAsyncData(
   `article-${targetPath.value}`,
-  () => queryCollection('content').where('path', '=', targetPath.value).all(),
+  () => queryCollection('content').path(targetPath.value).first(),
   { watch: [targetPath] }
 )
 
-const article = computed(() => articleList.value?.[0] ?? null)
+const article = computed(() => articleList.value ?? null)
 
 const { data: allData } = await useAsyncData('all-articles-nav', () =>
   queryCollection('content').all()
@@ -88,12 +88,6 @@ useHead({
         </NuxtLink>
         <span v-else class="text-slate-300 dark:text-slate-600">{{ $t('news.noNextArticle') }} &raquo;</span>
       </div>
-    </div>
-
-    <div v-else class="text-center py-20 bg-white dark:bg-slate-800 rounded-2xl max-w-4xl mx-auto shadow-sm">
-      <h2 class="text-2xl font-semibold text-slate-600 dark:text-slate-400">文章未找到了 🥲</h2>
-      <p class="text-slate-400 mt-2">路径: {{ targetPath }}</p>
-      <NuxtLink to="/news" class="text-blue-500 mt-6 inline-block hover:underline">返回文章列表</NuxtLink>
     </div>
   </main>
 </template>
