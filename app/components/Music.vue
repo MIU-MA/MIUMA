@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, computed, nextTick } from 'vue'
 import { Play, Pause, Music, SkipBack, SkipForward, RotateCcw, RotateCw, X } from 'lucide-vue-next'
 
 const SKIP_SECONDS = 10
@@ -43,11 +44,20 @@ const formatTime = (seconds: number) => {
 
 const loadTrack = () => {
   if (!audioRef.value || !currentTrack.value) return
+  isPlaying.value = false
   audioRef.value.src = currentTrack.value.src
   audioRef.value.load()
   progress.value = 0
   currentTime.value = '0:00'
   duration.value = '0:00'
+}
+
+const closePlayer = () => {
+  if (audioRef.value) {
+    audioRef.value.pause()
+    isPlaying.value = false
+  }
+  collapsed.value = true
 }
 
 const seek = (clientX: number) => {
@@ -121,8 +131,13 @@ const prevTrack = () => {
     (currentTrackIndex.value - 1 + musicList.value.length) % musicList.value.length
   loadTrack()
   if (wasPlaying) {
-    audioRef.value!.play()
-    isPlaying.value = true
+    nextTick(() => {
+      audioRef.value?.play()?.then(() => {
+        isPlaying.value = true
+      }).catch(() => {
+        isPlaying.value = false
+      })
+    })
   }
 }
 
@@ -133,8 +148,13 @@ const nextTrack = () => {
     (currentTrackIndex.value + 1) % musicList.value.length
   loadTrack()
   if (wasPlaying) {
-    audioRef.value!.play()
-    isPlaying.value = true
+    nextTick(() => {
+      audioRef.value?.play()?.then(() => {
+        isPlaying.value = true
+      }).catch(() => {
+        isPlaying.value = false
+      })
+    })
   }
 }
 
@@ -201,7 +221,7 @@ const onEnded = () => {
             </div>
           </div>
           <button
-            @click="collapsed = true"
+            @click="closePlayer"
             class="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
           >
             <X class="w-4 h-4" />
