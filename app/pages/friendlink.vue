@@ -23,6 +23,12 @@ const friendLinks = computed(() => [
     url: 'https://www.dearheaven.cn',
     bio: '热爱可抵岁月漫长',
     icon: 'https://pic-bed.dearheaven.cn/img/avator.webp',
+  },
+  {
+    name: 'Woodfish',
+    url: 'https://www.woodfish.site',
+    bio: 'woodfish!orz orz orz',
+    icon: 'https://www.woodfish.site/newBlog/asset/f725f7fc67d79930b505550749765877.webp',
   }
 ])
 
