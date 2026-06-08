@@ -14,25 +14,28 @@ const currentTime = ref('0:00')
 const duration = ref('0:00')
 const currentTrackIndex = ref(0)
 
-const musicList = ref([
-  {
-    title: '那天下雨了',
-    artist: '啦啦啦',
-    src: '/music/那天下雨了.mp3',
-  },
-   {
-    title: '黑色柳丁',
-    artist: '啦啦啦',
-    src: '/music/黑色柳丁.mp3',
-  },
-   {
-    title: '十七岁',
-    artist: '啦啦啦',
-    src: '/music/十七岁.mp3',
-  },
-])
+interface MusicItem {
+  id: number
+  title: string
+  artist: string
+  filename: string
+  mime_type: string
+  size: number
+  created_at: string
+}
 
-const currentTrack = computed(() => musicList.value[currentTrackIndex.value])
+const { data: rawList } = await useFetch<MusicItem[]>('/api/music')
+
+const musicList = computed<MusicItem[]>(() => rawList.value ?? [])
+
+const currentTrack = computed(() => {
+  const track = musicList.value[currentTrackIndex.value]
+  if (!track) return null
+  return {
+    ...track,
+    src: `/api/music/${track.id}`,
+  }
+})
 const hasPrev = computed(() => musicList.value.length > 1)
 const hasNext = computed(() => musicList.value.length > 1)
 
