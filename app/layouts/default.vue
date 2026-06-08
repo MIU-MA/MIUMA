@@ -11,6 +11,7 @@ useHead({
     <div class="pt-14 relative z-[1]">
       <slot />
     </div>
+    <Music />
     <AppFooter />
   </div>
 </template>
