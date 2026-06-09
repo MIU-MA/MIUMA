@@ -14,25 +14,52 @@ const currentTime = ref('0:00')
 const duration = ref('0:00')
 const currentTrackIndex = ref(0)
 
-const musicList = ref([
-  {
-    title: '那天下雨了',
-    artist: '啦啦啦',
-    src: '/music/那天下雨了.mp3',
-  },
-   {
-    title: '黑色柳丁',
-    artist: '啦啦啦',
-    src: '/music/黑色柳丁.mp3',
-  },
-   {
-    title: '十七岁',
-    artist: '啦啦啦',
-    src: '/music/十七岁.mp3',
-  },
-])
+const { data: apiMusicList } = useAsyncData('music-list', async () => {
+  const runtimeConfig = useRuntimeConfig()
+  try {
+    return await $fetch<any[]>(`${runtimeConfig.public.apiBase}/api/music`)
+  } catch {
+    return null
+  }
+})
 
-const currentTrack = computed(() => musicList.value[currentTrackIndex.value])
+/** 补全音频 URL —— 数据库存的是相对路径 /music/xxx，需拼接后端地址 */
+const apiBase = computed(() => {
+  if (typeof window === 'undefined') return 'http://localhost:3001'
+  const config = useRuntimeConfig()
+  return config.public.apiBase as string
+})
+
+const musicList = computed(() => {
+  if (apiMusicList.value && apiMusicList.value.length > 0) {
+    return apiMusicList.value.map((item: any) => ({
+      title: item.title,
+      artist: item.artist,
+      src: item.audioUrl.startsWith('http')
+        ? item.audioUrl
+        : `${apiBase.value}${item.audioUrl}`,
+    }))
+  }
+  return [
+    {
+      title: '那天下雨了',
+      artist: '啦啦啦',
+      src: '/music/那天下雨了.mp3',
+    },
+    {
+      title: '黑色柳丁',
+      artist: '啦啦啦',
+      src: '/music/黑色柳丁.mp3',
+    },
+    {
+      title: '十七岁',
+      artist: '啦啦啦',
+      src: '/music/十七岁.mp3',
+    },
+  ]
+})
+
+const currentTrack = computed(() => musicList.value[currentTrackIndex.value] ?? null)
 const hasPrev = computed(() => musicList.value.length > 1)
 const hasNext = computed(() => musicList.value.length > 1)
 
@@ -218,6 +245,9 @@ const onEnded = () => {
               <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 truncate max-w-[120px]">
                 {{ currentTrack?.title ?? '未知歌曲' }}
               </h3>
+              <p class="text-xs text-slate-400 dark:text-slate-500 truncate max-w-[120px]">
+                {{ currentTrack?.artist ?? '' }}
+              </p>
             </div>
           </div>
           <button
@@ -247,7 +277,7 @@ const onEnded = () => {
                 class="bg-rose-500 h-full rounded-full"
                 :class="isDragging ? '' : 'transition-all duration-100 ease-linear'"
                 :style="{ width: `${progress}%` }"
-              ></div>
+              />
             </div>
           </div>
           <span class="text-xs text-slate-400 dark:text-slate-500 font-mono w-8 text-left shrink-0">{{ duration }}</span>
@@ -302,7 +332,7 @@ const onEnded = () => {
           @loadedmetadata="onLoadedMetadata"
           @ended="onEnded"
           class="hidden"
-        ></audio>
+        />
       </div>
     </Transition>
   </div>

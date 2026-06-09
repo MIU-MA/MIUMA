@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
 
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://api.jxufe-tech.top',
+    },
+  },
+
   content: {
     renderer: {
       anchorLinks: false,
@@ -57,6 +63,11 @@ export default defineNuxtConfig({
 
   image: {
     format: ['avif', 'webp'],
+  },
+
+  /** /admin 路由关闭 SSR，纯客户端渲染，避免 useCookie SSG 阶段不可用 */
+  routeRules: {
+    '/admin/**': { ssr: false },
   },
 
   app: {

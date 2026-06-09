@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Sun, Moon, User, Link, FileText, Home, Menu, X } from 'lucide-vue-next'
+import { Sun, Moon, User, Link, FileText, Home, Menu, X, Settings } from 'lucide-vue-next'
 
 const { theme, toggleTheme } = useTheme()
 const { locale, toggle } = useBlogLocale()
