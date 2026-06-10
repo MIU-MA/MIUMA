@@ -16,7 +16,7 @@ useHead({
     /> 
     <section class="relative z-10 min-h-screen flex items-center justify-center px-6">
       <div class="max-w-4xl mx-auto text-center -translate-y-25">
-        <img src="/images/jt.svg" alt="Avatar" class="w-40 h-40 object-cover mx-auto mb-6" />
+        <img src="/images/jt.svg" alt="Avatar" class="w-40 h-40 object-contain mx-auto mb-6" />
         <h1 class="text-4xl z-[1] sm:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-4">
           MIUMA
         </h1>
