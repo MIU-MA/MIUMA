@@ -41,7 +41,7 @@ const inactiveClass = 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dar
 
       <div class="flex items-center justify-between h-16 px-6 border-b border-slate-200 dark:border-slate-800">
         <NuxtLink to="/" class="text-lg font-bold text-slate-900 dark:text-slate-100 hover:text-indigo-600 transition-colors">
-          MIUMA 后台
+           后台
         </NuxtLink>
         <button
           class="lg:hidden p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
@@ -91,7 +91,7 @@ const inactiveClass = 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dar
         >
           <Menu :size="20" />
         </button>
-        <span class="ml-3 font-semibold text-slate-900 dark:text-slate-100">MIUMA 后台</span>
+        <span class="ml-3 font-semibold text-slate-900 dark:text-slate-100">后台</span>
       </header>
 
       <main class="flex-1 p-6 overflow-auto">
