@@ -3,7 +3,7 @@
 definePageMeta({ layout: false })
 useHead({ title: '管理员登录 — MIUMA' })
 
-const apiBase = 'http://localhost:3001'
+const { login } = useAuth()
 const username = ref('')
 const password = ref('')
 const loading = ref(false)
@@ -17,14 +17,7 @@ async function handleLogin() {
   }
   loading.value = true
   try {
-    const res = await $fetch<{ access_token: string }>(`${apiBase}/api/auth/login`, {
-      method: 'POST',
-      body: { username: username.value, password: password.value },
-    })
-    // 写入 cookie
-    const tokenCookie = useCookie('blog_admin_token', { maxAge: 60 * 60 * 24 * 7, path: '/' })
-    tokenCookie.value = res.access_token
-    // 跳转
+    await login(username.value, password.value)
     await navigateTo('/admin')
   } catch (err: any) {
     console.error('[login]', err)
