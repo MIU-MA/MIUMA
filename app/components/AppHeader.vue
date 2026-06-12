@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Sun, Moon, User, Link, FileText, Home, Menu, X, Settings } from 'lucide-vue-next'
-
+const {isScroll,isHidden}=  useScrollHeader(80)
 const { theme, toggleTheme } = useTheme()
 const { locale, toggle } = useBlogLocale()
 const menuOpen = ref(false)
@@ -17,7 +17,11 @@ const iconBtnClass = "p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text
 </script>
 
 <template>
-  <nav class="fixed top-2 left-6 right-6 z-50 rounded-lg backdrop-blur-md bg-gray-50/85 dark:bg-slate-800/85 shadow-lg shadow-gray-300/40 dark:shadow-black/40 border border-gray-200/50 dark:border-slate-700/50 transition-colors">
+  <nav class="fixed top-2 left-6 right-6 z-50 rounded-lg backdrop-blur-md bg-gray-50/85 dark:bg-slate-800/85 shadow-lg shadow-gray-300/40 dark:shadow-black/40 border border-gray-200/50 dark:border-slate-700/50 transition-all duration-300"
+  :class="[
+      isScroll ? 'bg-white shadow-md' : 'bg-transparent',
+      isHidden ? '-translate-y-full' : 'translate-y-0'
+    ]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
 
       <NuxtLink to="/" class="inline-flex items-center gap-2 sm:gap-3 shrink-0">
