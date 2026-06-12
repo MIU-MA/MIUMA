@@ -2,7 +2,7 @@
 import { ArrowLeft, Save, Eye } from 'lucide-vue-next'
 
 definePageMeta({ layout: 'admin', middleware: 'admin' })
-useHead({ title: '写文章 — MIUMA 后台' })
+useHead({ title: '写文章' })
 
 const api = useApi()
 const router = useRouter()

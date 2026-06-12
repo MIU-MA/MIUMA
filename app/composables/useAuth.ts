@@ -1,8 +1,3 @@
-/**
- * 认证状态管理 —— JWT Token 存在 useCookie 中。
- */
-
-/** JWT payload 是 base64url 编码，atob 需要先转标准 base64 */
 function decodeJwtPayload(token: string): Record<string, unknown> | null {
   try {
     const parts = token.split('.')
@@ -36,7 +31,6 @@ export function useAuth() {
   /** 登录 */
   async function loginAction(username: string, password: string) {
     const config = useRuntimeConfig()
-    // 传裸对象，ofetch 会自动 JSON.stringify + 设 Content-Type
     const res = await $fetch<{ access_token: string }>(
       `${config.public.apiBase}/api/auth/login`,
       { method: 'POST', body: { username, password } },

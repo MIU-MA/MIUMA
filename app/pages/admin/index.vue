@@ -6,7 +6,7 @@ definePageMeta({
   middleware: 'admin',
 })
 
-useHead({ title: '控制台 — MIUMA 后台' })
+useHead({ title: '控制台' })
 
 const api = useApi()
 

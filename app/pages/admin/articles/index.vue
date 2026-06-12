@@ -2,7 +2,7 @@
 import { Plus, Pencil, Trash2, CalendarDays, RefreshCw } from 'lucide-vue-next'
 
 definePageMeta({ layout: 'admin', middleware: 'admin' })
-useHead({ title: '文章管理 — MIUMA 后台' })
+useHead({ title: '文章管理 ' })
 
 const api = useApi()
 

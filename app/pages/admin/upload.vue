@@ -2,7 +2,7 @@
 import { Upload, Image, Music, Check, Copy, AlertCircle, FolderOpen, FileText, RefreshCw, Eye, Trash2 } from 'lucide-vue-next'
 
 definePageMeta({ layout: 'admin', middleware: 'admin' })
-useHead({ title: '文件上传 — MIUMA 后台' })
+useHead({ title: '文件上传' })
 
 const api = useApi()
 const config = useRuntimeConfig()

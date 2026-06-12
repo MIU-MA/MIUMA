@@ -2,7 +2,7 @@
 import { Plus, Trash2, Pencil, Check, X, Music, User, RefreshCw, FolderSync } from 'lucide-vue-next'
 
 definePageMeta({ layout: 'admin', middleware: 'admin' })
-useHead({ title: '音乐管理 — MIUMA 后台' })
+useHead({ title: '音乐管理' })
 
 const api = useApi()
 

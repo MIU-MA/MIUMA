@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 definePageMeta({ layout: false })
-useHead({ title: '管理员登录 — MIUMA' })
+useHead({ title: '管理员登录' })
 
 const { login } = useAuth()
 const username = ref('')

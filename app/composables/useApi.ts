@@ -1,7 +1,3 @@
-/**
- * API 请求封装 —— 从 useAuth 拿 token，与登录页共用同一 cookie 实例。
- */
-
 export function useApi() {
   const { token, logout } = useAuth()
   const config = useRuntimeConfig()
