@@ -2,6 +2,7 @@
 title: KMP 算法
 date: 2026-05-27
 intro: 字符串匹配
+tags: [算法]
 ---
 
 ## 什么是 KMP？

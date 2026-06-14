@@ -2,6 +2,7 @@
 title: 碎碎念
 date: 2026-05-19
 intro: 日常
+tags: [日常]
 ---
 
 

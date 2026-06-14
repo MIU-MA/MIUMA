@@ -1,7 +1,8 @@
 ---
 title: Tailwind css 笔记
 date: 2026-05-14
-intro: 前端
+intro: css
+tags: [前端]
 ---
 
 

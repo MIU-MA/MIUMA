@@ -1,7 +1,8 @@
 ---
 title: 倍增法求LCA(最近公共祖先)
 date: 2026-05-16
-intro: 算法
+intro: 图论
+tags: [算法]
 ---
 
 

@@ -3,12 +3,13 @@ import { CalendarDays, Tag } from 'lucide-vue-next'
 
 const { data } = await useAsyncData('articles', () =>
   queryCollection('content')
-    .select('path', 'title', 'date', 'intro')
+    .select('path', 'title', 'date', 'intro', 'tags')
     .order('date', 'DESC')
     .all()
 )
 
-const articles = computed(() => data.value!)
+const articles = computed(() => data.value ?? [])
+const { tags, activeTag, filteredArticles, setTag } = useArticleFilter(articles)
 
 useHead({ title: '文章 - MIUMA' })
 </script>
@@ -21,13 +22,41 @@ useHead({ title: '文章 - MIUMA' })
           {{ $t('home.articles') }}
         </h1>
 
-        <template v-if="articles.length">
-          <div class="grid gap-6 ">
+        <div class="flex flex-wrap gap-2 mb-6">
+          <button
+            :class="[
+              'px-3 py-1 rounded-full text-sm font-medium transition-colors',
+              activeTag === null
+                ? 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700',
+            ]"
+            @click="activeTag = null"
+          >
+            全部
+          </button>
+
+          <button
+            v-for="tag in tags"
+            :key="tag"
+            :class="[
+              'px-3 py-1 rounded-full text-sm font-medium transition-colors',
+              activeTag === tag
+                ? 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700',
+            ]"
+            @click="setTag(tag)"
+          >
+            {{ tag }}
+          </button>
+        </div>
+
+        <template v-if="filteredArticles.length">
+          <div class="grid gap-6">
             <NuxtLink
-              v-for="article in articles"
+              v-for="article in filteredArticles"
               :key="article.path"
               :to="`/news${article.path}`"
-              class="block rounded-lg p-6 transition-colors dark:bg-slate-800 rounded-lg p-4 hover:bg-slate-500/5 dark:hover:bg-slate-100/5"
+              class="block rounded-lg p-6 transition-colors dark:bg-slate-800 hover:bg-slate-500/5 dark:hover:bg-slate-100/5"
             >
               <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
                 {{ article.title }}
