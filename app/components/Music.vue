@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from 'vue'
-import { Play, Pause, Music, SkipBack, SkipForward, RotateCcw, RotateCw, X } from 'lucide-vue-next'
+import { Play, Pause, Music, SkipBack, SkipForward, RotateCcw, RotateCw, X ,Music2} from 'lucide-vue-next'
 
 const SKIP_SECONDS = 10
 
@@ -23,7 +23,6 @@ const { data: apiMusicList } = useAsyncData('music-list', async () => {
   }
 })
 
-/** 补全音频 URL —— 数据库存的是相对路径 /music/xxx，需拼接后端地址 */
 const apiBase = computed(() => {
   if (typeof window === 'undefined') return 'http://localhost:3001'
   const config = useRuntimeConfig()
@@ -212,7 +211,6 @@ const onEnded = () => {
 
 <template>
   <div class="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-2">
-    <!-- 折叠按钮 -->
     <button
       v-if="collapsed"
       @click="collapsed = false"
@@ -222,7 +220,6 @@ const onEnded = () => {
       <Music class="w-5 h-5 text-slate-700 dark:text-slate-200" />
     </button>
 
-    <!-- 展开播放器 -->
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
       enter-from-class="opacity-0 scale-90 -translate-y-2"
@@ -235,19 +232,15 @@ const onEnded = () => {
         v-if="!collapsed"
         class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-xl w-64"
       >
-        <!-- 头部 -->
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-400 to-orange-300 flex items-center justify-center shrink-0 shadow-md">
-              <Music class="text-white w-5 h-5" />
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-md">
+              <Music2 class="text-black w-5 h-5" />
             </div>
             <div class="overflow-hidden">
               <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 truncate max-w-[120px]">
                 {{ currentTrack?.title ?? '未知歌曲' }}
               </h3>
-              <p class="text-xs text-slate-400 dark:text-slate-500 truncate max-w-[120px]">
-                {{ currentTrack?.artist ?? '' }}
-              </p>
             </div>
           </div>
           <button

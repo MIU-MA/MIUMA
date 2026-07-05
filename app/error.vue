@@ -16,7 +16,7 @@ const message = computed(() => {
       <h1 class="text-6xl font-bold text-slate-300 dark:text-slate-600 mb-4">{{ statusCode }}</h1>
       <NuxtLink
         to="/"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
       >
         好像出bug了噢
       </NuxtLink>

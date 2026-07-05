@@ -17,7 +17,7 @@ const iconBtnClass = "p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text
 </script>
 
 <template>
-  <nav class="fixed top-2 left-6 right-6 z-50 rounded-lg backdrop-blur-md bg-gray-50/85 dark:bg-slate-800/85 shadow-lg shadow-gray-300/40 dark:shadow-black/40 border border-gray-200/50 dark:border-slate-700/50 transition-all duration-300"
+  <nav class="fixed  top-2 left-6 right-6 z-50 rounded-lg backdrop-blur-md bg-gray-50/85 dark:bg-slate-800/85 shadow-lg shadow-slate-300/30 dark:shadow-slate-950/50 border border-gray-200/50 dark:border-slate-700/50 transition-all duration-300"
   :class="[
       isScroll ? 'bg-white shadow-md' : 'bg-transparent',
       isHidden ? '-translate-y-full' : 'translate-y-0'
@@ -26,9 +26,6 @@ const iconBtnClass = "p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text
 
       <NuxtLink to="/" class="inline-flex items-center gap-2 sm:gap-3 shrink-0">
         <img src="/images/jt.svg" alt="Logo" class="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full shrink-0" />
-        <span class="text-base sm:text-lg font-bold text-gray-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-          MIUMA
-        </span>
       </NuxtLink>
 
       <ul class="hidden md:flex items-center gap-1">

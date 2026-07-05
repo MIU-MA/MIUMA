@@ -69,7 +69,7 @@ useHead({
         <NuxtLink
           v-if="prevArticle"
           :to="`/news${prevArticle.path}`"
-          class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+          class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
         >
           <span>&laquo;</span>
           <span class="hidden sm:inline">{{ prevArticle.title || (prevArticle.meta as any)?.title }}</span>
@@ -80,7 +80,7 @@ useHead({
         <NuxtLink
           v-if="nextArticle"
           :to="`/news${nextArticle.path}`"
-          class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+          class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
         >
           <span class="hidden sm:inline">{{ nextArticle.title || (nextArticle.meta as any)?.title }}</span>
           <span class="sm:hidden">{{ $t('news.nextArticle') }}</span>
