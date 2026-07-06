@@ -6,12 +6,62 @@ const SKIP_SECONDS = 10
 const audioRef = ref<HTMLAudioElement | null>(null)
 const progressBarRef = ref<HTMLDivElement | null>(null)
 const isPlaying = ref(false)
-const isDragging = ref(false)
+const isSeekDragging = ref(false)
 const collapsed = ref(true)
 const progress = ref(0)
 const currentTime = ref('0:00')
 const duration = ref('0:00')
 const currentTrackIndex = ref(0)
+
+const playerx=ref(40)
+const playery=ref(100)
+let isDragging = false
+let hasDragging = false
+let startx = 0
+let starty = 0
+let currentx = 0
+let currenty = 0
+
+onMounted(() => {
+ playery.value = window.innerHeight - 120
+})
+
+const startDrag = (e: MouseEvent) => {
+  isDragging = true
+  hasDragging = false
+  startx = playerx.value
+  starty = playery.value
+  currentx = e.clientX
+  currenty = e.clientY
+
+  window.addEventListener('mousemove', onDrag)
+  window.addEventListener('mouseup', endDrag)
+}
+const onDrag =(e: MouseEvent) => {
+  if (!isDragging) return
+  const dx = e.clientX - currentx
+  const dy = e.clientY - currenty
+  if(dx>=5||dy>=5) hasDragging = true
+  if(hasDragging){
+    playerx.value = startx + dx
+    playery.value = starty + dy
+  }
+  hasDragging = true
+}
+const endDrag = (e: MouseEvent) => {
+  if (!isDragging) return
+  isDragging = false
+  window.removeEventListener('mousemove', onDrag)
+  window.removeEventListener('mouseup', endDrag)
+}
+onUnmounted(() => {
+  window.removeEventListener('mousemove', onDrag)
+  window.removeEventListener('mouseup', endDrag)
+})
+const handleCollapsedClick = () => {
+  if (hasDragging) return
+  collapsed.value = false
+}
 
 const { data: apiMusicList } = useAsyncData('music-list', async () => {
   const runtimeConfig = useRuntimeConfig()
@@ -131,10 +181,12 @@ const onEnded = () => {
 </script>
 
 <template>
-  <div class="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-0">
+  <div class="fixed z-50 flex flex-col items-start gap-0"
+    :style="{ left: `${playerx}px`, top: `${playery}px` }">
     <button
       v-if="collapsed"
-      @click="collapsed = false"
+      @mousedown="startDrag"
+      @click="handleCollapsedClick"
       class="font-mono text-xs uppercase tracking-wider px-3 py-1.5 border border-black dark:border-white bg-white dark:bg-black hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
     >
       MUSIC {{ isPlaying ? '▶' : '' }}
@@ -150,6 +202,7 @@ const onEnded = () => {
     >
       <div
         v-if="!collapsed"
+        @mousedown="startDrag"
         class="bg-white dark:bg-black border border-black dark:border-white p-4 w-64"
       >
         <div class="flex items-center justify-between mb-3">
@@ -161,6 +214,7 @@ const onEnded = () => {
           </div>
           <button
             @click="closePlayer"
+            @mousedown="endDrag"
             class="font-mono text-xs uppercase tracking-wider px-1.5 py-1 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
           >
             X
@@ -172,13 +226,13 @@ const onEnded = () => {
           <div
             ref="progressBarRef"
             class="flex-1 cursor-pointer py-2 -my-2"
-            @mousedown="seek($event.clientX); isDragging = true"
-            @mousemove="isDragging && seek($event.clientX)"
-            @mouseup="isDragging = false"
-            @mouseleave="isDragging = false"
-            @touchstart.prevent="seek(getTouchClientX($event)!); isDragging = true"
-            @touchmove.prevent="isDragging && seek(getTouchClientX($event)!)"
-            @touchend="isDragging = false"
+            @mousedown="seek($event.clientX); isSeekDragging = true"
+            @mousemove="isSeekDragging && seek($event.clientX)"
+            @mouseup="isSeekDragging = false"
+            @mouseleave="isSeekDragging = false"
+            @touchstart.prevent="seek(getTouchClientX($event)!); isSeekDragging = true"
+            @touchmove.prevent="isSeekDragging && seek(getTouchClientX($event)!)"
+            @touchend="isSeekDragging = false"
           >
             <div class="w-full border border-black dark:border-white h-1.5">
               <div
