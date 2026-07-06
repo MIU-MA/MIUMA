@@ -4,21 +4,18 @@ import type { NuxtError } from '#app'
 const props = defineProps<{ error: NuxtError }>()
 
 const statusCode = computed(() => props.error?.statusCode ?? 500)
-const message = computed(() => {
-  if (props.error?.statusCode === 404) return 'Page Not Found'
-  return props.error?.statusMessage ?? 'Something went wrong'
-})
 </script>
 
 <template>
-  <main class="min-h-screen bg-white/60 dark:bg-slate-900/60 transition-colors flex items-center justify-center px-6">
+  <main class="min-h-screen bg-white dark:bg-black flex items-center justify-center px-6">
     <div class="text-center">
-      <h1 class="text-6xl font-bold text-slate-300 dark:text-slate-600 mb-4">{{ statusCode }}</h1>
+      <h1 class="font-mono text-8xl uppercase tracking-tighter mb-4">{{ statusCode }}</h1>
+      <p class="font-mono text-xs uppercase tracking-wider text-zinc-500 mb-8">Page not found</p>
       <NuxtLink
         to="/"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+        class="font-mono text-xs uppercase tracking-wider px-4 py-2 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
       >
-        好像出bug了噢
+        返回首页
       </NuxtLink>
     </div>
   </main>

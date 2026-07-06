@@ -10,8 +10,8 @@
     "description": "我爱睡觉",
     "friendLinks": "友链",
     "about": "关于",
-    "aboutDescription": "排版灵感全部来自于 TangTangChu 大人",
-    "aboutDescription2": "剩下的慢慢再完善吧",
+    "aboutDescription": "我要开始好好学习了！！",
+    "aboutDescription2": "啊巴啊巴啊巴",
     "music": "音乐"
   },
   "news": {
@@ -38,7 +38,8 @@
     "articles": "文章",
     "about": "关于",
     "friendlink": "友链",
-    "admin": "后台"
+    "admin": "后台",
+    "work": "作品"
   },
   "admin": {
     "login": "管理员登录",

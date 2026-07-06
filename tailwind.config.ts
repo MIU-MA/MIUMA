@@ -6,19 +6,23 @@ const config: Config = {
   content: ['./app/**/*.{vue,ts}', './content/**/*.{md,mdx}'],
   theme: {
     extend: {
+      colors: {
+        black: '#111111',
+      },
       typography: {
         DEFAULT: {
           css: {
             pre: {
-              backgroundColor: '#f1f5f9',
-              borderRadius: '0.5rem',
+              backgroundColor: '#fafafa',
+              border: '1px solid #000000',
             },
           },
         },
         invert: {
           css: {
             pre: {
-              backgroundColor: '#161b22',
+              backgroundColor: '#0a0a0a',
+              border: '1px solid #ffffff',
             },
           },
         },

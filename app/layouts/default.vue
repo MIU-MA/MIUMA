@@ -6,12 +6,11 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-white/60 dark:bg-slate-900/60 transition-colors duration-500 relative">
+  <div class="min-h-screen bg-white dark:bg-black ">
     <AppHeader />
-    <div class="pt-14 relative z-[1]">
+    <div class="pt-12">
       <slot />
     </div>
     <Music />
-    <AppFooter />
   </div>
 </template>

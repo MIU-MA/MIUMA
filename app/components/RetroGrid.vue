@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 const ANIMATION_DURATION_SECONDS = 15
 const GRID_HEIGHT_RATIO = 3
 const GRID_LINE_ALIGNMENT_OFFSET_PX = 0.5
@@ -468,4 +468,4 @@ watch(() => [props.angle, props.cellSize, props.lightLineColor, props.darkLineCo
 
     <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent to-90% dark:from-slate-950 dark:via-slate-950/80" />
   </div>
-</template>
+</template> -->

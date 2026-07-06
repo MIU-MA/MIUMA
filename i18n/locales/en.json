@@ -38,7 +38,8 @@
     "articles": "Articles",
     "about": "About",
     "friendlink": "Friends",
-    "admin": "Admin"
+    "admin": "Admin",
+    "work": "Work"
   },
   "admin": {
     "login": "Admin Login",

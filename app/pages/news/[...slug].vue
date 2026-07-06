@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { CalendarDays } from 'lucide-vue-next'
-
 definePageMeta({ key: route => route.fullPath })
 
 const route = useRoute()
@@ -48,46 +46,61 @@ useHead({
 </script>
 
 <template>
-  <main class="pt-24 pb-12 px-4 sm:px-6 relative z-10">
-    <div v-if="article" class="article-wrapper max-w-4xl mx-auto bg-white dark:bg-slate-800 p-8 shadow-sm rounded-2xl transition-colors">
-      <header class="mb-8 border-b border-slate-100 dark:border-slate-700 pb-8">
-        <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4">{{ article.title || (article.meta as any)?.title }}</h1>
-        <div v-if="article.date" class="flex items-center text-slate-500 dark:text-slate-400 text-sm">
-          <CalendarDays class="w-4 h-4 mr-1" /> {{ article.date }}
+  <main class="px-4 sm:px-6 py-12 sm:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-4">
+
+      <div v-if="article" class="md:col-span-8 md:col-start-3">
+
+        <header class="mb-6 sm:mb-8">
+          <p v-if="article.date" class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 mb-2 sm:mb-3">
+            {{ article.date }}
+          </p>
+          <h1 class="font-mono text-xl sm:text-3xl uppercase tracking-tight mb-4">
+            {{ article.title || (article.meta as any)?.title }}
+          </h1>
+          <div v-if="article.intro" class="flex gap-2">
+            <span class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">{{ article.intro }}</span>
+          </div>
+        </header>
+
+        <hr class="border-black dark:border-white mb-6 sm:mb-8" />
+
+        <div class="prose max-w-none font-light leading-relaxed prose-headings:font-mono prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-normal prose-p:font-light prose-p:leading-relaxed prose-pre:border prose-pre:border-black dark:prose-pre:border-white prose-pre:text-xs sm:prose-pre:text-sm prose-img:border prose-img:border-black dark:prose-img:border-white">
+          <ContentRenderer :value="article" />
         </div>
-      </header>
 
-      <div v-if="(article.meta as any)?.cover" class="mb-8">
-        <img :src="(article.meta as any).cover" :alt="article.title" loading="lazy" class="w-full h-auto rounded-xl shadow-md mx-auto">
+        <hr class="border-black dark:border-white mt-10 sm:mt-12 mb-6 sm:mb-8" />
+
+        <div class="flex justify-between items-center gap-4">
+          <NuxtLink
+            v-if="prevArticle"
+            :to="`/news${prevArticle.path}`"
+            class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150 truncate max-w-[45%]"
+          >
+            &larr; PREV
+          </NuxtLink>
+          <span v-else class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-300 dark:text-zinc-700">
+            &larr; PREV
+          </span>
+
+          <NuxtLink
+            v-if="nextArticle"
+            :to="`/news${nextArticle.path}`"
+            class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150 truncate max-w-[45%] text-right"
+          >
+            NEXT &rarr;
+          </NuxtLink>
+          <span v-else class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-300 dark:text-zinc-700">
+            NEXT &rarr;
+          </span>
+        </div>
+
       </div>
 
-      <div class="prose prose-blue dark:prose-invert max-w-none prose-img:rounded-xl prose-headings:text-slate-900 dark:prose-headings:text-slate-100">
-        <ContentRenderer :value="article" />
+      <div v-else class="md:col-span-8 md:col-start-3 py-20">
+        <p class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Article not found.</p>
       </div>
 
-      <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center">
-        <NuxtLink
-          v-if="prevArticle"
-          :to="`/news${prevArticle.path}`"
-          class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
-        >
-          <span>&laquo;</span>
-          <span class="hidden sm:inline">{{ prevArticle.title || (prevArticle.meta as any)?.title }}</span>
-          <span class="sm:hidden">{{ $t('news.prevArticle') }}</span>
-        </NuxtLink>
-        <span v-else class="text-slate-300 dark:text-slate-600">&laquo; {{ $t('news.noPrevArticle') }}</span>
-
-        <NuxtLink
-          v-if="nextArticle"
-          :to="`/news${nextArticle.path}`"
-          class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
-        >
-          <span class="hidden sm:inline">{{ nextArticle.title || (nextArticle.meta as any)?.title }}</span>
-          <span class="sm:hidden">{{ $t('news.nextArticle') }}</span>
-          <span>&raquo;</span>
-        </NuxtLink>
-        <span v-else class="text-slate-300 dark:text-slate-600">{{ $t('news.noNextArticle') }} &raquo;</span>
-      </div>
     </div>
   </main>
 </template>

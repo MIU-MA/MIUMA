@@ -13,35 +13,27 @@ const percentage = computed(() => {
 })
 
 onMounted(() => {
-  timer = setInterval(() => {
-    now.value = Date.now()
-  }, 1000 * 60 * 60)
+  timer = setInterval(() => { now.value = Date.now() }, 1000 * 60 * 60)
 })
 
-onUnmounted(() => {
-  clearInterval(timer)
-})
+onUnmounted(() => clearInterval(timer))
 </script>
 
 <template>
-  <div class="relative w-full max-w-4xl mx-auto p-6 bg-white/60 dark:bg-slate-800/60 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm transition-colors hover:scale-[1.02]">
+  <div class="bg-white dark:bg-black border border-black dark:border-white p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
     <div class="flex justify-between items-end mb-4">
-      <span class="text-sm font-bold text-gray-400 dark:text-slate-500 tracking-[0.2em] uppercase">
-        Progress
-      </span>
-      <span class="text-3xl font-extrabold text-rose-400 dark:text-rose-500 font-mono">
-        {{ percentage }}%
-      </span>
+      <span class="font-mono text-xs uppercase tracking-wider text-zinc-500">PROGRESS</span>
+      <span class="font-mono text-3xl">{{ percentage }}%</span>
     </div>
 
-    <div class="w-full bg-gray-100 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+    <div class="w-full border border-black dark:border-white h-3">
       <div
-        class="bg-rose-400 dark:bg-rose-500 h-full rounded-full"
+        class="bg-black dark:bg-white h-full"
         :style="{ width: `${percentage}%` }"
-      ></div>
+      />
     </div>
 
-    <div class="flex justify-between mt-2 text-xs text-gray-300 dark:text-slate-600 font-mono">
+    <div class="flex justify-between mt-2 font-mono text-xs uppercase tracking-wider text-zinc-500">
       <span>2024.09</span>
       <span>2028.06</span>
     </div>
