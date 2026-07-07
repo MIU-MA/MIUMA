@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import CustomCursor from '~/components/CustomCursor.vue';
+
 useHead({
   htmlAttrs: { lang: 'zh-CN' },
   link: [{ rel: 'icon', href: '/favicon.png' }],
@@ -10,6 +12,7 @@ useHead({
     <AppHeader />
     <div class="pt-12">
       <slot />
+      <CustomCursor />
     </div>
     <Music />
   </div>
