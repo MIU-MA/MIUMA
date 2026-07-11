@@ -23,7 +23,7 @@ onUnmounted(() => {
 
       <div class="hidden md:flex flex-col justify-between items-start col-span-1 col-start-1 border-l border-black dark:border-white pl-2 opacity-40">
         <span class="font-mono text-xs">+</span>
-        <span class="font-mono text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl] rotate-180 my-8">
+        <span class="font-mono text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl] rotate-180 my-8 select-none">
           SYS.VER_2.0.4
         </span>
         <span class="font-mono text-xs">+</span>
