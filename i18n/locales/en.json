@@ -41,6 +41,28 @@
     "admin": "Admin",
     "work": "Work"
   },
+  "work": {
+    "eyebrow": "WORK / SPATIAL INDEX",
+    "sceneLabel": "A three-dimensional work atlas you can rotate and zoom",
+    "pointsLabel": "Projects and reserved points",
+    "count": "{count} project | {count} projects",
+    "hint": "Drag to rotate · Scroll / pinch to zoom · Select a point",
+    "placeholder": "An unlit star",
+    "placeholderKind": "RESERVED",
+    "placeholderSummary": "A little space for something new. Another project will find its way here in time.",
+    "placeholderNote": "COMING SOON / One thing at a time",
+    "close": "Close project introduction",
+    "stack": "Technology stack",
+    "visit": "View project",
+    "source": "Source",
+    "viewControls": "Atlas view controls",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Overview",
+    "loading": "Unfolding the work atlas…",
+    "unavailable": "The 3D atlas is unavailable. You can still visit the projects below.",
+    "retry": "Reload atlas"
+  },
   "admin": {
     "login": "Admin Login",
     "loginSubtitle": "MIUMA Blog Admin Panel",

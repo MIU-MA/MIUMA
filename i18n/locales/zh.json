@@ -41,6 +41,28 @@
     "admin": "后台",
     "work": "作品"
   },
+  "work": {
+    "eyebrow": "作品 / 空间索引",
+    "sceneLabel": "可以旋转和缩放的三维作品星图",
+    "pointsLabel": "作品和预留节点",
+    "count": "{count} 件作品",
+    "hint": "拖动旋转 · 滚轮 / 双指缩放 · 点击小点",
+    "placeholder": "待点亮",
+    "placeholderKind": "预留节点",
+    "placeholderSummary": "先在这里留一颗星。新的小作品，会慢慢放到这里。",
+    "placeholderNote": "COMING SOON / 不着急，慢慢来",
+    "close": "关闭作品简介",
+    "stack": "技术栈",
+    "visit": "访问作品",
+    "source": "源码",
+    "viewControls": "星图视角控制",
+    "zoomIn": "放大星图",
+    "zoomOut": "缩小星图",
+    "reset": "返回全景",
+    "loading": "正在展开作品星图…",
+    "unavailable": "暂时无法显示三维星图，你仍然可以访问下面的作品。",
+    "retry": "重新加载星图"
+  },
   "admin": {
     "login": "管理员登录",
     "loginSubtitle": "MIUMA 博客后台管理",
