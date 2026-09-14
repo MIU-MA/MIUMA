@@ -30,6 +30,12 @@ const friendLinks = computed(() => [
     bio: 'woodfish!orz orz orz',
     icon: 'https://www.woodfish.site/newBlog/asset/f725f7fc67d79930b505550749765877.webp',
   },
+  {
+    name: 'YHY',
+    url: 'https://ryan.0412.online/',
+    bio: '大佬',
+    icon: 'https://ryan.0412.online/images/avatar.png'
+  }
 ])
 
 useHead({ title: '友链 — MIUMA' })
