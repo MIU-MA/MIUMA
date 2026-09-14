@@ -44,7 +44,7 @@ export default defineNuxtConfig({
             default: 'github-light',
             dark: 'github-dark',
           },
-          langs: ['cpp', 'c', 'python', 'javascript', 'typescript', 'bash', 'json', 'xml'],
+          langs: ['cpp', 'c', 'python', 'javascript', 'js', 'typescript', 'ts', 'bash', 'json', 'xml', 'html', 'nginx', 'vue', 'css', 'scss', 'yml'],
         },
       },
     },
