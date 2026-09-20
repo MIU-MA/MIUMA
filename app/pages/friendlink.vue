@@ -35,6 +35,12 @@ const friendLinks = computed(() => [
     url: 'https://ryan.0412.online/',
     bio: '大佬',
     icon: 'https://ryan.0412.online/images/avatar.png'
+  },
+  {
+    name: 'WindowsIt',
+    url: 'https://caiyan12.github.io/',
+    bio: '强强',
+    icon: 'https://caiyan12.github.io/images/avatar.webp'
   }
 ])
 
