@@ -96,28 +96,36 @@ function visitMarkdown(node: HastNode | undefined) {
   }
 }
 
+const codeLanguageAliases: Record<string, string> = {
+  'c++': 'cpp',
+  text: 'plaintext',
+}
+
 function normalizeMarkdownCodeLanguage(node: HastNode) {
-  if (String(node.lang || '').toLowerCase() === 'c++') {
-    node.lang = 'cpp'
-  }
+  const language = codeLanguageAliases[String(node.lang || '').toLowerCase()]
+  if (language) node.lang = language
 }
 
 function normalizeCodeLanguage(node: HastNode) {
   const properties = node.properties
-  if (!properties || String(properties.language || '').toLowerCase() !== 'c++') return
+  if (!properties) return
 
-  properties.language = 'cpp'
+  const originalLanguage = String(properties.language || '').toLowerCase()
+  const language = codeLanguageAliases[originalLanguage]
+  if (!language) return
+
+  properties.language = language
+
+  const normalizeClassName = (item: unknown) =>
+    typeof item === 'string' && item.toLowerCase() === `language-${originalLanguage}`
+      ? `language-${language}`
+      : item
 
   const className = properties.className
   if (Array.isArray(className)) {
-    properties.className = className.map(item =>
-      item === 'language-c++' ? 'language-cpp' : item
-    )
-    return
-  }
-
-  if (typeof className === 'string') {
-    properties.className = className.replace(/\blanguage-c\+\+\b/g, 'language-cpp')
+    properties.className = className.map(normalizeClassName)
+  } else if (typeof className === 'string') {
+    properties.className = className.split(/(\s+)/).map(normalizeClassName).join('')
   }
 }
 
