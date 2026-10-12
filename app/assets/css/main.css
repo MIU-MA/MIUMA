@@ -62,6 +62,16 @@ a {
   color: inherit;
 }
 
+/* 纯文本代码没有语法着色，需要与代码框背景匹配的基础文字颜色。 */
+.prose pre {
+  color: #24292e;
+}
+
+html.dark .prose pre {
+  background-color: #0a0a0a;
+  color: #e1e4e8;
+}
+
 /* 正文链接：下划线 */
 .prose a {
   text-decoration: underline;

@@ -1,6 +1,7 @@
 /// <reference types="nuxt" />
 /// <reference path="./.nuxt/types/modules.d.ts" />
 
+import { fileURLToPath } from 'node:url'
 import rehypeGithubAlertPlugin, { remarkCodeLanguageAliasPlugin } from './app/utils/markdown-it-alert'
 
 export default defineNuxtConfig({
@@ -32,11 +33,13 @@ export default defineNuxtConfig({
         remarkPlugins: {
           'github-alert-code-aliases': {
             instance: remarkCodeLanguageAliasPlugin,
+            src: fileURLToPath(new URL('./app/utils/remark-code-language.ts', import.meta.url)).replaceAll('\\', '/'),
           },
         },
         rehypePlugins: {
           'github-alerts': {
             instance: rehypeGithubAlertPlugin,
+            src: fileURLToPath(new URL('./app/utils/markdown-it-alert.ts', import.meta.url)).replaceAll('\\', '/'),
           },
         },
         highlight: {
