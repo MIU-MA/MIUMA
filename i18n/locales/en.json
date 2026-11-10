@@ -34,6 +34,9 @@
     "switch": "切换到中文"
   },
   "nav": {
+    "main": "Main navigation",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
     "home": "Home",
     "articles": "Articles",
     "about": "About",

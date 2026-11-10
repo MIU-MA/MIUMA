@@ -34,6 +34,9 @@
     "switch": "Switch to English"
   },
   "nav": {
+    "main": "主导航",
+    "openMenu": "打开导航菜单",
+    "closeMenu": "关闭导航菜单",
     "home": "首页",
     "articles": "文章",
     "about": "关于",

@@ -1,28 +1,31 @@
 export function useScrollHeader(threshold = 0) {
   const y = ref(0)
-  const isHidden = ref(false);
+  const isHidden = ref(false)
+  let lastY = 0
 
-  let lastY=0;
-  const onScroll = () => {
-    y.value = window.scrollY
-    let currentY = y.value;
-    if(y.value>threshold&&currentY>lastY){
-      isHidden.value = true;
-    } else if(currentY<lastY){
-      isHidden.value = false;
-    }
-    lastY = currentY;
+  const reveal = () => {
+    y.value = Math.max(0, window.scrollY)
+    lastY = y.value
+    isHidden.value = false
   }
 
-    onMounted(() => {
-        onScroll()
-        window.addEventListener('scroll', onScroll, { passive: true })
-    })
-    onUnmounted(() => {
-        window.removeEventListener('scroll', onScroll)
-    })
+  const onScroll = () => {
+    const currentY = Math.max(0, window.scrollY)
+    y.value = currentY
+    if (currentY <= threshold || currentY < lastY) {
+      isHidden.value = false
+    } else if (currentY > lastY) {
+      isHidden.value = true
+    }
+    lastY = currentY
+  }
 
-    const isScroll=computed(() => y.value > threshold);
+  onMounted(() => {
+    reveal()
+    window.addEventListener('scroll', onScroll, { passive: true })
+  })
+  onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
-  return { y, isHidden, isScroll }
+  const isScroll = computed(() => y.value > threshold)
+  return { y, isHidden, isScroll, reveal }
 }

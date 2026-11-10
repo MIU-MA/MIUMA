@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 import { ref } from 'vue'
 
 const mouseX = ref(0)
@@ -46,7 +47,7 @@ onUnmounted(() => {
 
       <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <NuxtLink
-          to="/"
+          :to="localePath('/')"
           class="relative block rotate-2
                  bg-white dark:bg-black border border-black dark:border-white p-3 pb-3.5 text-center
                  shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)]
@@ -70,7 +71,7 @@ onUnmounted(() => {
       </div>
 
       <NuxtLink
-        to="/news"
+        :to="localePath('/news')"
         class="group absolute left-[10%] top-[12%] w-64 p-4 flex items-center justify-between gap-3 text-left select-auto
                bg-white dark:bg-black border border-black dark:border-white
                shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]
@@ -87,7 +88,7 @@ onUnmounted(() => {
       </NuxtLink>
 
       <NuxtLink
-        to="/friendlink"
+        :to="localePath('/friendlink')"
         class="group absolute right-[10%] top-[12%] w-40 p-4 py-8 flex flex-col justify-between text-left select-auto
                bg-white dark:bg-black border border-black dark:border-white
                shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]
@@ -120,7 +121,7 @@ onUnmounted(() => {
       </div>
 
       <NuxtLink
-        to="/work"
+        :to="localePath('/work')"
         class="group absolute right-[7%] bottom-[28%] w-64 p-4 flex items-center justify-between gap-3 text-left select-auto
                bg-white dark:bg-black border border-black dark:border-white
                shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]
@@ -137,7 +138,7 @@ onUnmounted(() => {
       </NuxtLink>
 
       <NuxtLink
-        to="/about"
+        :to="localePath('/about')"
         class="group absolute left-[10%] bottom-[30%] w-44 p-4 flex flex-col justify-between gap-3 text-left select-auto
                bg-white dark:bg-black border border-black dark:border-white
                shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]
@@ -175,7 +176,7 @@ onUnmounted(() => {
 
       <h1 class="font-mono text-4xl uppercase tracking-tighter leading-none select-none">MIUMA</h1>
 
-      <NuxtLink to="/" class="relative mt-6 inline-block rotate-1 bg-white dark:bg-black border border-black dark:border-white p-2.5 pb-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+      <NuxtLink :to="localePath('/')" class="relative mt-6 inline-block rotate-1 bg-white dark:bg-black border border-black dark:border-white p-2.5 pb-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
         <img
           src="/images/jt.svg"
           alt="Avatar"
@@ -210,25 +211,25 @@ onUnmounted(() => {
       </div>
 
       <div class="mt-8 w-full grid grid-cols-2 gap-3">
-        <NuxtLink to="/news" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
+        <NuxtLink :to="localePath('/news')" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
                                     shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]">
           <p class="font-mono text-[10px] uppercase tracking-wider mb-0.5 text-zinc-500">01</p>
           <p class="font-mono text-base uppercase tracking-tight">{{ $t('nav.articles') }}</p>
           <p class="font-light text-xs text-zinc-500 mt-1 leading-relaxed">笔记合集</p>
         </NuxtLink>
-        <NuxtLink to="/about" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
+        <NuxtLink :to="localePath('/about')" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
                                     shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]">
           <p class="font-mono text-[10px] uppercase tracking-wider mb-0.5 text-zinc-500">02</p>
           <p class="font-mono text-base uppercase tracking-tight">{{ $t('nav.about') }}</p>
           <p class="font-light text-xs text-zinc-500 mt-1 leading-relaxed">碎碎念</p>
         </NuxtLink>
-        <NuxtLink to="/friendlink" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
+        <NuxtLink :to="localePath('/friendlink')" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
                                         shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]">
           <p class="font-mono text-[10px] uppercase tracking-wider mb-0.5 text-zinc-500">03</p>
           <p class="font-mono text-base uppercase tracking-tight">{{ $t('nav.friendlink') }}</p>
           <p class="font-light text-xs text-zinc-500 mt-1 leading-relaxed">超级大佬们</p>
         </NuxtLink>
-        <NuxtLink to="/work" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
+        <NuxtLink :to="localePath('/work')" class="group block bg-white dark:bg-black border border-black dark:border-white p-4 text-left
                                     shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]">
           <p class="font-mono text-[10px] uppercase tracking-wider mb-0.5 text-zinc-500">04</p>
           <p class="font-mono text-base uppercase tracking-tight">{{ $t('nav.work') }}</p>

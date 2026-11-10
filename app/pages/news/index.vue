@@ -1,8 +1,10 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 const { data } = await useAsyncData('articles', () =>
   queryCollection('content')
     .select('path', 'title', 'date', 'intro', 'tags')
     .order('date', 'DESC')
+    .order('path', 'ASC')
     .all()
 )
 
@@ -56,7 +58,7 @@ useHead({ title: '文章 - MIUMA' })
           <NuxtLink
             v-for="(article, i) in filteredArticles"
             :key="article.path"
-            :to="`/news${article.path}`"
+            :to="localePath(`/news${article.path}`)"
             :class="[
               'group block bg-white dark:bg-black border border-black dark:border-white p-4 sm:p-6 transition-all duration-200',
               'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]',

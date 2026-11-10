@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 useHead({ title: '关于 — MIUMA' })
 </script>
 
@@ -32,7 +33,7 @@ useHead({ title: '关于 — MIUMA' })
           <span class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">睡觉</span>
           <span class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">睡觉</span>
           <NuxtLink
-            to="/test"
+            :to="localePath('/test')"
             class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
           >
             还是睡觉

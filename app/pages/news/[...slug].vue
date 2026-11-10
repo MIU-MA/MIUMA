@@ -1,12 +1,13 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 definePageMeta({ key: route => route.fullPath })
 
 const route = useRoute()
 
-const slugParam = route.params.slug
 const targetPath = computed(() => {
+  const slugParam = route.params.slug
   const rawStr = Array.isArray(slugParam) ? slugParam.join('/') : slugParam || ''
-  return `/${decodeURIComponent(rawStr)}`
+  return `/${rawStr}`
 })
 
 const { data: articleList } = await useAsyncData(
@@ -18,15 +19,13 @@ const { data: articleList } = await useAsyncData(
 const article = computed(() => articleList.value ?? null)
 
 const { data: allData } = await useAsyncData('all-articles-nav', () =>
-  queryCollection('content').all()
+  queryCollection('content')
+    .select('path', 'title', 'date')
+    .order('date', 'DESC')
+    .order('path', 'ASC')
+    .all()
 )
-
-const allArticles = computed(() => {
-  if (!allData.value) return []
-  return [...allData.value]
-    .filter((a: any) => a.date)
-    .sort((a: any, b: any) => (b.date || '').localeCompare(a.date || ''))
-})
+const allArticles = computed(() => allData.value ?? [])
 
 const prevArticle = computed(() => {
   if (!allArticles.value) return null
@@ -74,31 +73,32 @@ useHead({
         <div class="flex justify-between items-center gap-4">
           <NuxtLink
             v-if="prevArticle"
-            :to="`/news${prevArticle.path}`"
+            :to="localePath(`/news${prevArticle.path}`)"
             class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150 truncate max-w-[45%]"
           >
-            &larr; PREV
+            &larr; {{ $t('news.prevArticle') }}
           </NuxtLink>
           <span v-else class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-300 dark:text-zinc-700">
-            &larr; PREV
+            &larr; {{ $t('news.prevArticle') }}
           </span>
 
           <NuxtLink
             v-if="nextArticle"
-            :to="`/news${nextArticle.path}`"
+            :to="localePath(`/news${nextArticle.path}`)"
             class="font-mono text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1.5 bg-white dark:bg-black border border-black dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150 truncate max-w-[45%] text-right"
           >
-            NEXT &rarr;
+            {{ $t('news.nextArticle') }} &rarr;
           </NuxtLink>
           <span v-else class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-300 dark:text-zinc-700">
-            NEXT &rarr;
+            {{ $t('news.nextArticle') }} &rarr;
           </span>
         </div>
 
       </div>
 
       <div v-else class="md:col-span-8 md:col-start-3 py-20">
-        <p class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Article not found.</p>
+        <p class="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">{{ $t('news.articleMissing') }}</p>
+        <NuxtLink :to="localePath('/news')" class="mt-4 inline-block underline underline-offset-4">{{ $t('home.articles') }}</NuxtLink>
       </div>
 
     </div>
