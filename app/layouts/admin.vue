@@ -4,6 +4,7 @@ import {
   FileText,
   Music,
   Upload,
+  Terminal,
   LogOut,
   ChevronLeft,
   Menu,
@@ -66,6 +67,19 @@ const inactiveClass = 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dar
           {{ item.label }}
         </NuxtLink>
       </nav>
+
+      <div class="px-4 pb-4">
+        <a
+          href="https://xray.miuma.top:8443/"
+          target="_blank"
+          rel="noopener noreferrer"
+          :class="[linkClass, inactiveClass]"
+          @click="sidebarOpen = false"
+        >
+          <Terminal :size="18" aria-hidden="true" />
+          远程 Agent
+        </a>
+      </div>
 
       <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200 dark:border-slate-800">
         <div class="flex items-center justify-between">
